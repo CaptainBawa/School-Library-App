@@ -25,8 +25,4 @@ class Person
   def of_age
     @age >= 18
   end
-
-  def parent_permission?
-    @parent_permission
-  end
 end
