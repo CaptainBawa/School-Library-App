@@ -1,3 +1,5 @@
+require_relative 'nameable'
+
 class Person < Nameable
   def initialize(age, name = 'Unknown', parent_permission: true)
     super()
@@ -19,6 +21,7 @@ class Person < Nameable
     of_age || parent_permission
   end
 
+  # This function returns the value of the instance variable @name.
   def correct_name
     @name
   end
