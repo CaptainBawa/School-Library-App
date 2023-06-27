@@ -51,6 +51,7 @@
 - **Person class**
 - **Student class**
 - **Teacher class**
+- **Use decorator design pattern to correct the names of people**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -109,7 +110,6 @@ To run tests, run the following command:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **Add class decorate**
 - [ ] **Set up associations**
 - [ ] **Add basic UI**
 
