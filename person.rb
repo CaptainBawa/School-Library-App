@@ -7,6 +7,7 @@ class Person < Nameable
     @name = name
     @age = age
     @parent_permission = parent_permission
+    @rentals = []
   end
 
   # Getters for id
@@ -26,6 +27,16 @@ class Person < Nameable
     @name
   end
 
+  # Add a rental to the person's rentals array
+  def add_rental(rental)
+    rentals << rental
+  end
+
+  # Get the books rented by the person
+  def rented_books
+    rentals.map(&:book)
+  end
+
   private
 
   # Private method of_age? that returns true if @age is
@@ -33,4 +44,6 @@ class Person < Nameable
   def of_age
     @age >= 18
   end
+
+  attr_accessor :rentals
 end
