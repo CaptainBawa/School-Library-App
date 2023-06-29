@@ -1,7 +1,7 @@
 # The `Rental` class represents a rental transaction between a
 # person and a book, with a specific date.
 class Rental
-  def initialize(date, person, book)
+  def initialize(person, book, date = 'Unknown')
     @date = date
     @person = person
     @book = book
