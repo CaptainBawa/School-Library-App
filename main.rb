@@ -4,7 +4,7 @@ require_relative 'app'
 # class and calls its run method.
 def main
   app = App.new
-  app.run
+  app.ron
 end
 
 main
