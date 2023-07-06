@@ -1,3 +1,13 @@
 [
-
+  {
+    "name": "Captain",
+    "age": 25,
+    "classroom": "Ruby",
+    "parent_permission": true
+  },
+  {
+    "name": "Wesbos",
+    "age": 55,
+    "specialization": "web dev"
+  }
 ]
