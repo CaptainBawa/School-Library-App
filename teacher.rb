@@ -11,6 +11,6 @@ class Teacher < Person
   attr_accessor :specialization
 
   def can_use_services
-    !of_age
+    true
   end
 end
