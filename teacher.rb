@@ -8,6 +8,8 @@ class Teacher < Person
     @specialization = specialization
   end
 
+  attr_accessor :specialization
+
   def can_use_services
     !of_age
   end

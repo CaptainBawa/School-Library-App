@@ -1,10 +1,13 @@
+require 'json'
 require_relative 'person'
 require_relative 'student'
 require_relative 'teacher'
 require_relative 'rental'
 require_relative 'book'
+require_relative 'json_handler'
 
 class App
+  include JsonHandler
   def initialize
     @people = []
     @books = []
@@ -22,10 +25,21 @@ class App
 
   # The function `list_all_people` prints the ID, name, and age of each
   # person in the `@people` array.
+  # The function `list_all_people` prints the ID, name, age, and additional attributes
+  # of each person in the `@people` array.
   def list_all_people
     puts 'All People:'
     @people.each do |person|
-      puts "ID: #{person.id}, Name: #{person.name}, Age: #{person.age} \n \n"
+      case person
+      when Student
+        puts "[Student] - ID: #{person.id}, Name: #{person.name}, Age: #{person.age},\
+        Classroom: #{person.classroom},Parent Permission: #{person.parent_permission} \n \n"
+      when Teacher
+        puts "[Teacher] - ID: #{person.id}, Name: #{person.name}, Age: #{person.age},\
+        Specialization: #{person.specialization} \n \n"
+      else
+        puts "[Unknow] - ID: #{person.id}, Name: #{person.name}, Age: #{person.age} \n \n"
+      end
     end
   end
 
@@ -67,8 +81,16 @@ class App
   def create_student(name, age)
     puts 'Enter classroom:'
     classroom = gets.chomp
-    person = Student.new(name, age, classroom)
+    puts 'Enter parents permission [Y/N]:'
+    parent_permission = convert_permissions(gets.chomp)
+    person = Student.new(name, age, classroom, parent_permission)
     @people << person
+  end
+
+  # This function takes inputs for permission
+  # and returns it as true if input is 'y' and false if input is 'n'
+  def convert_permissions(input)
+    (input == 'y')
   end
 
   # The function creates a new instance of a Teacher class with the given
@@ -124,7 +146,7 @@ class App
       return
     end
 
-    puts 'Enter rental date:'
+    puts 'Enter rental date [YY-MM-DD]:'
     date = gets.chomp
 
     rental = Rental.new(person, book, date)
@@ -182,7 +204,8 @@ class App
     when 6
       list_rentals_for_person
     else
-      puts "Invalid option!\n \n"
+      puts "Thanks for using my app! I hope you enjoyed it... or at least didnt hate it.
+      \n \n"
     end
   end
 
