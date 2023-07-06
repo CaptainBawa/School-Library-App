@@ -7,7 +7,6 @@ class Book
 
   attr_accessor :title, :author
 
-
   # Add a rental to the book's rentals array
   def add_rental(rental)
     rentals << rental
