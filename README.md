@@ -106,6 +106,12 @@ To run tests, run the following command:
 - Twitter: [@BawaCollins](https://twitter.com/BawaCollins)
 - LinkedIn: [@captainbawa](https://www.linkedin.com/in/captainbawa/)
 
+👤 **Adams Bamfo**
+
+- GitHub: [Adams-Ghub](https://github.com/Adams-Ghub)
+- Twitter: [@bamfoaf](https://twitter.com/bamfoaf)
+- LinkedIn: [Adams Bamfo](https://www.linkedin.com/in/adams-bamfo/)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🔭 Future Features <a name="future-features"></a>
