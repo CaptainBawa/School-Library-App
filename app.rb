@@ -1,3 +1,4 @@
+require 'json'
 require_relative 'person'
 require_relative 'student'
 require_relative 'teacher'
@@ -22,10 +23,21 @@ class App
 
   # The function `list_all_people` prints the ID, name, and age of each
   # person in the `@people` array.
+  # The function `list_all_people` prints the ID, name, age, and additional attributes
+  # of each person in the `@people` array.
   def list_all_people
     puts 'All People:'
     @people.each do |person|
-      puts "ID: #{person.id}, Name: #{person.name}, Age: #{person.age} \n \n"
+      case person
+      when Student
+        puts "[Student] - ID: #{person.id}, Name: #{person.name}, Age: #{person.age}, Classroom: #{person.classroom}, \
+         Parent Permission: #{person.parent_permission} \n \n"
+      when Teacher
+        puts "[Teacher] - ID: #{person.id}, Name: #{person.name}, Age: #{person.age}, \
+        Specialization: #{person.specialization} \n \n"
+      else
+        puts "[Unknow] - ID: #{person.id}, Name: #{person.name}, Age: #{person.age} \n \n"
+      end
     end
   end
 
@@ -67,7 +79,9 @@ class App
   def create_student(name, age)
     puts 'Enter classroom:'
     classroom = gets.chomp
-    person = Student.new(name, age, classroom)
+    puts 'Enter parents permission [Y/N]:'
+    parent_permission = gets.chomp
+    person = Student.new(name, age, classroom, parent_permission)
     @people << person
   end
 
@@ -124,7 +138,7 @@ class App
       return
     end
 
-    puts 'Enter rental date:'
+    puts 'Enter rental date [YY-MM-DD]:'
     date = gets.chomp
 
     rental = Rental.new(person, book, date)
@@ -182,7 +196,8 @@ class App
     when 6
       list_rentals_for_person
     else
-      puts "Invalid option!\n \n"
+      puts "Thanks for using my app! I hope you enjoyed it... or at least didnt hate it.
+      \n \n"
     end
   end
 
@@ -202,6 +217,61 @@ class App
     rentals = @rentals.select { |rental| rental.person == person }
     rentals.each do |rental|
       puts "Book: #{rental.book.title}, Date: #{rental.date}\n \n"
+    end
+  end
+
+  # Preserve data starts here
+
+  def load_data_from_json
+    load_books_from_json
+    load_people_from_json
+    load_rentals_from_json
+  end
+
+  def save_data_to_json
+    save_books_to_json
+    save_people_to_json
+    save_rentals_to_json
+  end
+
+  private
+
+
+
+  # Saves books to JSON file
+  def save_books_to_json
+    books_data = @books.map { |book| { title: book.title, author: book.author } }
+    File.open('books.json', 'w') do |file|
+      file.write(JSON.pretty_generate(books_data))
+    end
+  end
+
+  # Saves people to JSON file
+  def save_people_to_json
+    people_data = @people.map do |person|
+      case person
+      when Student
+        { name: person.name, age: person.age, classroom: person.classroom, parent_permission: person.parent_permission }
+      when Teacher
+        { name: person.name, age: person.age, specialization: person.specialization }
+      end
+    end
+    File.open('people.json', 'w') do |file|
+      file.write(JSON.pretty_generate(people_data))
+    end
+  end
+
+  # Saves rentals to JSON file
+  def save_rentals_to_json
+    rentals_data = @rentals.map do |rental|
+      {
+        person_name: rental.person.name,
+        book_title: rental.book.title,
+        date: rental.date
+      }
+    end
+    File.open('rentals.json', 'w') do |file|
+      file.write(JSON.pretty_generate(rentals_data))
     end
   end
 end
