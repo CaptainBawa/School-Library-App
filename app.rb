@@ -30,9 +30,11 @@ class App
     @people.each do |person|
       case person
       when Student
-        puts "[Student] - ID: #{person.id}, Name: #{person.name}, Age: #{person.age}, Classroom: #{person.classroom},Parent Permission: #{person.parent_permission} \n \n"
+        puts "[Student] - ID: #{person.id}, Name: #{person.name}, Age: #{person.age},\
+        Classroom: #{person.classroom},Parent Permission: #{person.parent_permission} \n \n"
       when Teacher
-        puts "[Teacher] - ID: #{person.id}, Name: #{person.name}, Age: #{person.age}, Specialization: #{person.specialization} \n \n"
+        puts "[Teacher] - ID: #{person.id}, Name: #{person.name}, Age: #{person.age},\
+        Specialization: #{person.specialization} \n \n"
       else
         puts "[Unknow] - ID: #{person.id}, Name: #{person.name}, Age: #{person.age} \n \n"
       end
@@ -78,8 +80,8 @@ class App
     puts 'Enter classroom:'
     classroom = gets.chomp
     puts 'Enter parents permission [Y/N]:'
-    permission = convert_permissions(gets.chomp)
-    person = Student.new(name, age, classroom, parent_permission=permission)
+    parent_permission = convert_permissions(gets.chomp)
+    person = Student.new(name, age, classroom, parent_permission)
     @people << person
   end
 
