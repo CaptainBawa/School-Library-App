@@ -4,7 +4,9 @@ require_relative 'app'
 # class and calls its run method.
 def main
   app = App.new
+  app.load_data_from_json
   app.run
+  app.save_data_to_json
 end
 
 main
