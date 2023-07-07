@@ -14,5 +14,4 @@ describe Solver do
   it 'reverses a string' do
     expect(subject.reverse('hello')).to eq 'olleh'
   end
-
 end
