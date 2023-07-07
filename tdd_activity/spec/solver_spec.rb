@@ -1,4 +1,4 @@
-require './solver'
+require './tdd_activity/solver'
 
 describe Solver do
     subject {Solver.new}
