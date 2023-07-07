@@ -14,4 +14,20 @@ describe Solver do
   it 'reverses a string' do
     expect(subject.reverse('hello')).to eq 'olleh'
   end
+
+  it 'takes an integer and returns a string' do
+    expect(subject.fizzbuzz(3)).to eq 'fizz'
+  end
+
+  it 'takes an integer and returns a string' do
+    expect(subject.fizzbuzz(5)).to eq 'buzz'
+  end
+
+  it 'takes an integer and returns a string' do
+    expect(subject.fizzbuzz(15)).to eq 'fizzbuzz'
+  end
+
+  it 'takes an integer and returns a string' do
+    expect(subject.fizzbuzz(11)).to eq '11'
+  end
 end
