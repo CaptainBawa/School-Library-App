@@ -7,6 +7,10 @@ describe Solver do
     expect(subject.factorial(4)).to eq(24)
   end
 
+  it 'return 1 when input is 0' do
+    expect(subject.factorial(0)).to eq(1)
+  end
+
   it 'throws an error for negative numbers' do
     expect(subject.factorial(-1)).to eq 'no negative number'
   end
