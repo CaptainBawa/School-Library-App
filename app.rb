@@ -110,10 +110,10 @@ class App
   # creates a new `Book`
   # object with the provided information, and adds it to a collection of books.
   def create_book
-    puts 'Enter title:'
+    puts 'Enter book title:'
     title = gets.chomp
 
-    puts 'Enter author:'
+    puts 'Enter author name:'
     author = gets.chomp
 
     book = Book.new(title, author)
